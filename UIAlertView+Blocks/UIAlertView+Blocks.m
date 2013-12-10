@@ -25,12 +25,14 @@ static void *completionHandlerKey = &completionHandlerKey;
                                 cancelButtonTitle:cancelButtonTitle
                                 otherButtonTitles:otherButtonsTitle, nil];
     
-    va_list args;
-    va_start(args, otherButtonsTitle);
-    while((otherButtonsTitle = va_arg(args, id)) != nil) {
-        [av addButtonWithTitle:otherButtonsTitle];
+    if(otherButtonsTitle) {
+        va_list args;
+        va_start(args, otherButtonsTitle);
+        while((otherButtonsTitle = va_arg(args, id)) != nil) {
+            [av addButtonWithTitle:otherButtonsTitle];
+        }
+        va_end(args);
     }
-    va_end(args);
     return av;
 }
 
